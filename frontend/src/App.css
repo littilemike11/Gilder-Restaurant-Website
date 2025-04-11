@@ -1,4 +1,6 @@
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, bumblebee;
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
