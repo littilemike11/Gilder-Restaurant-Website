@@ -1,3 +1,6 @@
+import belimi from "/src/assets/belimi.jpeg";
+import cherry_lime_ricky from "/src/assets/cherry_lime_ricky.jpeg";
+import melon_mojito from "/src/assets/melon_mojito.jpeg";
 const menu = [
   {
     name: "Smoked Salmon",
@@ -163,6 +166,7 @@ const menu = [
   },
   {
     name: "Cherry Lime Rickey",
+    img: cherry_lime_ricky,
     description: "amarena cherries, lime, soda",
     type: "Specialty Beverages",
     isVegan: true,
@@ -171,6 +175,7 @@ const menu = [
   },
   {
     name: "Bellini",
+    img: belimi,
     description: "peach puree, sparkling white grape juice",
     type: "Specialty Beverages",
     isVegan: true,
@@ -179,6 +184,7 @@ const menu = [
   },
   {
     name: "Melon Mojito",
+    img: melon_mojito,
     description: "honeydew, mint, agave, lime",
     type: "Specialty Beverages",
     isVegan: true,

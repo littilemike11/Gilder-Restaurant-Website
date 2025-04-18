@@ -1,13 +1,7 @@
 export default function MenuItem({ item }) {
     return (
-        <div className="card bg-base-100 w-auto shadow-sm">
-            {item.image &&
-                <figure>
-                    <img
-                        src={item.image}
-                        alt={`image of ${item.name}`} />
-                </figure>
-            }
+        <div className="card bg-base-100 w-auto h-full shadow-sm">
+
             <div className="card-body">
                 <h2 className="card-title">
                     {item.name}
@@ -20,6 +14,14 @@ export default function MenuItem({ item }) {
                     {!item.isVegan && item.isVegetarian && <div className="badge badge-outline">Vegetarian</div>}
                 </div>
             </div>
+            {item.img &&
+                <figure className="h-80 overflow-hidden">
+                    <img
+                        className=""
+                        src={item.img}
+                        alt={`image of ${item.name}`} />
+                </figure>
+            }
         </div>
     )
 }
