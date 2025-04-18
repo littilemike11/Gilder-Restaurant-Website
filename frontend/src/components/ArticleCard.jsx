@@ -1,7 +1,7 @@
 export default function ArticleCard({ article }) {
     return (
         <>
-            <a href={article.link} target="_blank">
+            <a href={article.link} target="_blank" title="Go to Article">
                 <div className="card bg-base-100 w-80  shadow-sm">
                     <figure>
                         <img

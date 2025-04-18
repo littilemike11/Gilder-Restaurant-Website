@@ -5,7 +5,7 @@ export default function Menu() {
 
     return (
         <>
-            <h1>Menu</h1>
+            <h1 className="sectionTitle">Menu</h1>
             {/* name of each tab group should be unique */}
             <div className="tabs tabs-border ">
                 <input type="radio" name="my_tabs_2" className="tab text-xl" aria-label="First" defaultChecked />

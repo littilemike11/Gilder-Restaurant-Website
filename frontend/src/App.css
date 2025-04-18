@@ -7,7 +7,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 2rem 2rem 2rem;
+  padding: 0 2rem;
   text-align: center;
 }
 
@@ -17,4 +17,10 @@ body {
   background-size: 35vw 35vh;
   background-position: center;
 
+}
+
+.sectionTitle {
+  font-size: xx-large;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
 }
