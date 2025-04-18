@@ -3,6 +3,7 @@ import HoursLocation from "./HoursLocation";
 import Menu from "./Menu";
 import Press from "./Press";
 import Footer from "./Footer";
+import TranslateWidget from "./TranslateWidget";
 
 export default function Navbar() {
     return (
@@ -27,6 +28,7 @@ export default function Navbar() {
                                 </svg>
                             </label>
                         </div>
+                        <TranslateWidget />
                         <div className="mx-2 flex-1 px-2">The Restaurant at Gilder</div>
                         <div className="hidden flex-none lg:block">
                             <ul className="menu menu-horizontal">

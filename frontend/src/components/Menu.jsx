@@ -77,7 +77,7 @@ export default function Menu() {
                 </div>
 
             </div>
-            <a className="flex justify-center items-center link link-hover link-info w-fit m-auto p-2" title="Download The Restaurant at Gilder Menu" target="_blank" href="https://www.amnh.org/content/download/413316/5979973/file/the-restaurant-at-gilder-menu.pdf">
+            <a className="flex justify-center items-center link link-hover link-info w-fit m-auto p-2 text-xl" title="Download The Restaurant at Gilder Menu" target="_blank" href="https://www.amnh.org/content/download/413316/5979973/file/the-restaurant-at-gilder-menu.pdf">
                 <FaDownload />
                 The Restaurant at Gilder Menu
             </a>

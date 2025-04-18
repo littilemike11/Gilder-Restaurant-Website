@@ -6,7 +6,7 @@ export default function HoursLocation() {
             <div className="flex gap-6 flex-col ">
                 <div className="flex gap-4 flex-col md:flex-row">
                     <div className="w-full md:w-1/2 h-[450px] p-2 m-2">
-                        <caption className="block">Street View</caption>
+                        <p className="block">Street View</p>
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.1073191523597!2d-73.97689292344468!3d40.78165473334751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25959db5aff51%3A0xeacaf1130ee08991!2sThe%20Restaurant%20at%20Gilder!5e0!3m2!1sen!2sus!4v1744990563446!5m2!1sen!2sus"
                             className="w-full h-full rounded-lg"
@@ -17,7 +17,7 @@ export default function HoursLocation() {
 
                     </div>
                     <div className="w-full md:w-1/2 h-[450px] p-2 m-2">
-                        <caption className="block">Interior View</caption>
+                        <p className="block">Interior View</p>
                         <a
                             href="https://www.amnh.org/interactive-map/floor-2/the-restaurant-at-gilder"
                             target="_blank"
@@ -37,7 +37,7 @@ export default function HoursLocation() {
 
                 <div className="bg-base-200 p-2 my-4">
                     <address>200 Central Park West,<br />New York, NY 10024</address>
-                    <p>Phone: 212-769-5100</p>
+                    <p>Phone: 212-496-3351</p>
                     <br />
                     <p>Located inside the American Museum of Natural History, Gilder Section Floor 2.</p>
                     <p>Walk-ins also welcome. Admission to the Museum is required to dine.</p>

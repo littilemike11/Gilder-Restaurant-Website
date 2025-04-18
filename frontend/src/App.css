@@ -20,7 +20,24 @@ body {
 }
 
 .sectionTitle {
-  font-size: xx-large;
+  font-size: 3.5rem;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
+}
+
+#google_translate_element {
+  line-height: 1;
+  display: flex;
+
+}
+
+.goog-te-gadget-simple {
+  display: flex !important;
+  align-items: center;
+}
+
+.goog-te-gadget-simple a {
+  display: flex !important;
+  align-items: center;
+  text-decoration: none;
 }
