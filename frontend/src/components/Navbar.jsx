@@ -1,4 +1,8 @@
 import Hero from "./Hero";
+import HoursLocation from "./HoursLocation";
+import Menu from "./Menu";
+import Press from "./Press";
+import Footer from "./Footer";
 
 export default function Navbar() {
     return (
@@ -33,7 +37,14 @@ export default function Navbar() {
                         </div>
                     </div>
                     {/* Page content here */}
-                    <Hero/>
+                    <div className="flex flex-col gap-y-12">
+                        <Hero />
+                        <Menu />
+                        <HoursLocation />
+                        <Press />
+                        <Footer />
+                    </div>
+
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
