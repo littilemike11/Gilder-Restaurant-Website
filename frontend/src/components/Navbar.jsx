@@ -4,11 +4,14 @@ import Menu from "./Menu";
 import Press from "./Press";
 import Footer from "./Footer";
 import TranslateWidget from "./TranslateWidget";
+import { RxDoubleArrowUp } from "react-icons/rx";
 import { useRef } from "react";
+import hero from "daisyui/components/hero";
 export default function Navbar() {
     const menuRef = useRef(null);
     const hoursLocationRef = useRef(null)
     const pressRef =useRef(null)
+    const heroRef =useRef(null)
     const scrollToElement = (elementref)=>{
         elementref.current?.scrollIntoView({behavior:'smooth'})
     }
@@ -18,7 +21,7 @@ export default function Navbar() {
                 <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     {/* Navbar */}
-                    <div className="navbar bg-base-300 w-full text-xl">
+                    <div className="navbar bg-base-300 text-xl">
                         <div className="flex-none lg:hidden">
                             <label htmlFor="my-drawer-3" aria-label="open sidebar" className="btn btn-square btn-ghost">
                                 <svg
@@ -48,8 +51,10 @@ export default function Navbar() {
                         </div>
                     </div>
                     {/* Page content here */}
-                    <div className="flex flex-col gap-y-12">
-                        <Hero />
+                    <div className="flex flex-col relative gap-y-12">
+                        <div ref={heroRef}>
+                          <Hero />  
+                        </div>
                         <div ref={menuRef}>
                            <Menu /> 
                         </div>
@@ -59,7 +64,10 @@ export default function Navbar() {
                         <div ref={pressRef}>
                             <Press />
                         </div>
-                        
+                        <div className="tooltip cursor-pointer fixed z-50 bottom-10 right-10 text-5xl" data-tip="scroll to top" onClick={()=>scrollToElement(heroRef)}>
+                            <RxDoubleArrowUp /> 
+                       </div>
+
                         <Footer />
                     </div>
 
