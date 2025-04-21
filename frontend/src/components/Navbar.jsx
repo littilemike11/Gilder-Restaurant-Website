@@ -4,8 +4,14 @@ import Menu from "./Menu";
 import Press from "./Press";
 import Footer from "./Footer";
 import TranslateWidget from "./TranslateWidget";
-
+import { useRef } from "react";
 export default function Navbar() {
+    const menuRef = useRef(null);
+    const hoursLocationRef = useRef(null)
+    const pressRef =useRef(null)
+    const scrollToElement = (elementref)=>{
+        elementref.current?.scrollIntoView({behavior:'smooth'})
+    }
     return (
         <>
             <div className="drawer">
@@ -33,9 +39,9 @@ export default function Navbar() {
                         <div className="hidden flex-none lg:block">
                             <ul className="menu menu-horizontal gap-2 text-xl">
                                 {/* Navbar menu content here */}
-                                <li><a>Menu</a></li>
-                                <li><a>Hours of Operation & Location</a></li>
-                                <li><a>Press</a></li>
+                                <li><a onClick={()=>scrollToElement(menuRef)}>Menu</a></li>
+                                <li><a onClick={()=>scrollToElement(hoursLocationRef)}>Hours of Operation & Location</a></li>
+                                <li><a onClick={()=>scrollToElement(pressRef)}>Press</a></li>
                                 <li><a className="btn btn-primary" href="https://resy.com/cities/new-york-ny/venues/the-restaurant-at-gilder">Make a Reservation</a></li>
 
                             </ul>
@@ -44,9 +50,16 @@ export default function Navbar() {
                     {/* Page content here */}
                     <div className="flex flex-col gap-y-12">
                         <Hero />
-                        <Menu />
-                        <HoursLocation />
-                        <Press />
+                        <div ref={menuRef}>
+                           <Menu /> 
+                        </div>
+                        <div ref={hoursLocationRef}>
+                            <HoursLocation />
+                        </div>
+                        <div ref={pressRef}>
+                            <Press />
+                        </div>
+                        
                         <Footer />
                     </div>
 
@@ -55,9 +68,9 @@ export default function Navbar() {
                     <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu bg-base-200 min-h-full w-80 gap-y-6 p-4 text-xl">
                         {/* Sidebar content here */}
-                        <li><a>Menu</a></li>
-                        <li><a>Hours of Operation & Location</a></li>
-                        <li><a>Press</a></li>
+                        <li><a onClick={()=>scrollToElement(menuRef)}>Menu</a></li>
+                        <li><a onClick={()=>scrollToElement(hoursLocationRef)}>Hours of Operation & Location</a></li>
+                        <li><a onClick={()=>scrollToElement(pressRef)}>Press</a></li>
                         <li><a className="btn btn-primary text-xl" href="https://resy.com/cities/new-york-ny/venues/the-restaurant-at-gilder">Make a Reservation</a></li>
                     </ul>
                 </div>

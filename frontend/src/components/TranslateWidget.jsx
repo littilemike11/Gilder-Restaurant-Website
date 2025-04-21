@@ -12,7 +12,7 @@ export default function TranslateWidget() {
                 {
                     pageLanguage: "en",
                     autoDisplay: false,
-                    includedLanguages: "en,es,fr,de,it,zh-CN,ja,ko,hi",
+                    includedLanguages: "en,es,fr,de,it,zh-CN,ja,ko,hi,pt,ru",
                     layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
                 },
                 "google_translate_element"
