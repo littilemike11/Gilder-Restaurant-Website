@@ -6,6 +6,12 @@ const articles = [
     link: "https://ny.eater.com/2023/6/26/23772870/the-gilder-natural-history-museum-nyc-review",
   },
   {
+    name:"Eater NY",
+    img:"https://cdn.vox-cdn.com/thumbor/hg9swvl-noimhVcOweXA5wfsWeg=/0x0:2048x1360/1320x0/filters:focal(0x0:2048x1360):format(webp):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/24751257/GilderExterior2.jpg",
+    title:"The Best Museum Restaurants in New York City",
+    link:"https://ny.eater.com/2024/8/12/24215348/the-best-museum-restaurants-in-new-york-city"
+  },
+  {
     name: "The Infatuation",
     img: "https://res.cloudinary.com/the-infatuation/image/upload/c_fill,w_512,ar_4:3,g_center,f_auto/images/RestaurantatGilder_CarinaFinn_NYC_wuynyu",
     title: "The Restaurant at Gilder",
