@@ -1,0 +1,300 @@
+import mongoose from "mongoose";
+import MenuItem from "./menuModel.js";
+import dotenv from "dotenv";
+dotenv.config();
+
+//connect to mongoDB
+const uri = process.env.MONGO_URI;
+const clientOptions = {
+  serverApi: { version: "1", strict: true, deprecationErrors: true },
+};
+
+async function connectDb() {
+  try {
+    await mongoose.connect(uri, clientOptions);
+    await mongoose.connection.db.admin().command({ ping: 1 });
+    console.log(
+      "Pinged your deployment. You successfully connected to MongoDB!"
+    );
+  } catch (error) {
+    console.log("Error: " + error);
+    await mongoose.disconnect();
+  }
+}
+
+const testMenu = [
+  {
+    name: "Smoked Salmon",
+    description:
+      "potato pancake, creme fraiche, shallots, tomato, frisee, chives",
+    type: "First",
+    isVegan: false,
+    isVegetarian: false,
+    price: 24,
+  },
+  {
+    name: "California Crudite",
+    description: "market vegetables, chevre, creamy avocado dip, pita chips",
+    type: "First",
+    isVegan: false,
+    isVegetarian: true,
+    price: 23,
+  },
+  {
+    name: "Baby Greens Salad",
+    description: "easter egg radish, fines herbes, champagne vinaigrette",
+    type: "First",
+    isVegan: true,
+    isVegetarian: true,
+    price: 20,
+  },
+  {
+    name: "Tuscan Kale Caesar",
+    description: "romaine, radicchio, pecorino, breadcrumbs, garlic dressing",
+    type: "First",
+    isVegan: false,
+    isVegetarian: false,
+    price: 18,
+  },
+  {
+    name: "Faroe Island Salmon",
+    description: "royal trumpet mushrooms, asparagus, cippolini onions",
+    type: "Second",
+    isVegan: false,
+    isVegetarian: false,
+    price: 30,
+  },
+  {
+    name: "Roasted Lemon Chicken",
+    description: "yukon potato puree, blistered tomatoes, kalamata olives",
+    type: "Second",
+    isVegan: false,
+    isVegetarian: false,
+    price: 28,
+  },
+  {
+    name: "Mediterranean Tuna Sandwich",
+    description: "ahi tuna confit, arugula, giardiniera, herb mayo, fries",
+    type: "Second",
+    isVegan: false,
+    isVegetarian: false,
+    price: 25,
+  },
+  {
+    name: "Gilder Burger",
+    description:
+      "Pat LaFrieda dry aged beef blend, cheddar, tomato, pickles, onion, aioli, fries",
+    type: "Second",
+    isVegan: false,
+    isVegetarian: false,
+    price: 26,
+  },
+  {
+    name: "Grilled Chicken Sandwich",
+    description: "caramelized onions, gruyere cheese, arugula, tomato, fries",
+    type: "Second",
+    isVegan: false,
+    isVegetarian: false,
+    price: 24,
+  },
+  {
+    name: "Roasted Cauliflower",
+    description: "heritage grains, fava beans, roasted tomatoes, agridolce",
+    type: "Second",
+    isVegan: true,
+    isVegetarian: true,
+    price: 22,
+  },
+  {
+    name: "Soup of the Day (Cup/Bowl)",
+    description: "",
+    type: "Side",
+    isVegan: false,
+    isVegetarian: false,
+    price: "10 / 14", // could also be 14 depending on size
+  },
+  {
+    name: "Small Greens Salad",
+    description: "",
+    type: "Side",
+    isVegan: true,
+    isVegetarian: true,
+    price: 10,
+  },
+  {
+    name: "Spring Risotto & Shrimp",
+    description: "english peas, fontina cheese, mini tomatoes, ramp butter",
+    type: "Chef Special",
+    isVegan: false,
+    isVegetarian: false,
+    price: 30,
+  },
+  {
+    name: "Short Rib Banh Mi Sandwich",
+    description:
+      "soy braised beef shirt rib, cucumber, carrot, jalapeno, citrus aioli, cilantro, basil, french fries",
+    type: "Chef Special",
+    isVegan: false,
+    isVegetarian: false,
+    price: 24,
+  },
+  {
+    name: "Asparagus Velvet Soup",
+    description: "a silky blend of asparagus, potatoes and spring onions",
+    type: "Chef Special",
+    isVegan: false,
+    isVegetarian: true,
+    price: "10/14",
+  },
+  {
+    name: "House-Made Milk Rolls",
+    description: "",
+    type: "Side",
+    isVegan: false,
+    isVegetarian: true,
+    price: 9,
+  },
+  {
+    name: "Side of Mushrooms",
+    description: "",
+    type: "Side",
+    isVegan: true,
+    isVegetarian: true,
+    price: 8,
+  },
+  {
+    name: "Side of Bacon",
+    description: "",
+    type: "Side",
+    isVegan: false,
+    isVegetarian: false,
+    price: 8,
+  },
+  {
+    name: "Add Bacon or a Fried Egg",
+    description: "",
+    type: "Addon",
+    isVegan: false,
+    isVegetarian: false,
+    price: 4,
+  },
+  {
+    name: "Add Avocado or Mushrooms",
+    description: "",
+    type: "Addon",
+    isVegan: true,
+    isVegetarian: true,
+    price: 4,
+  },
+  {
+    name: "Add Chicken or Tuna Confit",
+    description: "",
+    type: "Addon",
+    isVegan: false,
+    isVegetarian: false,
+    price: 10,
+  },
+  {
+    name: "Add Salmon or Shrimp",
+    description: "",
+    type: "Addon",
+    isVegan: false,
+    isVegetarian: false,
+    price: 12,
+  },
+  {
+    name: "The Butterfly",
+    description: "butterfly pea flower tea, lemonade",
+    type: "Specialty Beverage",
+    isVegan: true,
+    isVegetarian: true,
+    price: 10,
+  },
+  {
+    name: "Cherry Lime Rickey",
+    img: "cherry_lime_ricky",
+    description: "amarena cherries, lime, soda",
+    type: "Specialty Beverage",
+    isVegan: true,
+    isVegetarian: true,
+    price: 10,
+  },
+  {
+    name: "Bellini",
+    img: "belimi",
+    description: "peach puree, sparkling white grape juice",
+    type: "Specialty Beverage",
+    isVegan: true,
+    isVegetarian: true,
+    price: 10,
+  },
+  {
+    name: "Melon Mojito",
+    img: "melon_mojito",
+    description: "honeydew, mint, agave, lime",
+    type: "Specialty Beverage",
+    isVegan: true,
+    isVegetarian: true,
+    price: 10,
+  },
+  {
+    name: "Zardetto Spritz",
+    description: "prosecco, rhubarb-orange infused amaro",
+    type: "Specialty Beverage",
+    isVegan: true,
+    isVegetarian: true,
+    price: 16,
+  },
+  {
+    name: "New York Style Cheesecake",
+    description: "",
+    type: "Dessert",
+    isVegan: false,
+    isVegetarian: true,
+    price: 12,
+  },
+  {
+    name: "Strawberry Panna Cotta",
+    description: "",
+    type: "Dessert",
+    isVegan: true,
+    isVegetarian: true,
+    price: 12,
+  },
+  {
+    name: "Chocolate Chip Skillet Cookie",
+    description: "",
+    type: "Dessert",
+    isVegan: false,
+    isVegetarian: true,
+    price: 12,
+  },
+  {
+    name: "Affogato",
+    description: "",
+    type: "Dessert",
+    isVegan: false,
+    isVegetarian: true,
+    price: 8,
+  },
+];
+
+// Seed the database with starter data
+async function seedData() {
+  try {
+    await connectDb().catch(console.dir);
+    // First, clear the database of existing modules
+    await MenuItem.deleteMany();
+
+    // Insert starter modules
+    await MenuItem.insertMany(testMenu);
+
+    console.log("Database seeded!");
+  } catch (error) {
+    console.error("Error seeding the database:", error);
+  } finally {
+    mongoose.connection.close();
+  }
+}
+
+seedData();
