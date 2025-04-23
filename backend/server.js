@@ -5,9 +5,9 @@ dotenv.config();
 const app = express();
 
 const PORT = 3000;
-
+import router from "./MenuRoutes";
 app.use(express.json());
-
+app.use("/api/v1", router);
 const uri = process.env.MONGO_URI;
 
 const clientOptions = {
