@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-import MenuItem from "./menuModel";
+import MenuItem from "./menuModel.js";
 
 //Get all menu items (including hidden -> staff)
 router.get("/", async (res) => {
