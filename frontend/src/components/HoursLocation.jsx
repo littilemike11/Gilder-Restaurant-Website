@@ -35,17 +35,19 @@ export default function HoursLocation() {
                     </div>
                 </div>
 
-                <div className="bg-base-200 p-2 my-4">
-                    <address>200 Central Park West,<br />New York, NY 10024</address>
+                <div className=" p-2 my-4">
+                    <address className="font-bold text-lg" s> 200 Central Park West,<br />New York, NY 10024</address>
                     <p>Phone: 212-496-3351</p>
+                    <br />
+                    <p>Open daily for lunch, 11:30am - 3:30pm.</p>
+                    <p>closed Thanksgiving Day and Christmas Day.</p>
                     <br />
                     <p>Located inside the American Museum of Natural History, Gilder Section Floor 2.</p>
                     <p>Walk-ins also welcome. Admission to the Museum is required to dine.</p>
                     <br />
                     <p>Closest Entrance: Columbus Ave./Gilder Center for Science, Education, and Innovation: Enter the Gilder Center at Columbus Ave. and 79th Street. Accessible by wheelchair.</p>
-                    <br />
-                    <p>Open daily for lunch, 11:30am - 3:30pm.</p>
-                    <p>closed Thanksgiving Day and Christmas Day.</p>
+
+
                 </div>
 
             </div >

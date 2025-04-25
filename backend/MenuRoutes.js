@@ -4,20 +4,20 @@ const router = express.Router();
 import MenuItem from "./menuModel.js";
 
 //Get all menu items (including hidden -> staff)
-router.get("/", async (res) => {
+router.get("/", async (req, res) => {
   try {
     const menuItems = await MenuItem.find();
     if (menuItems.length === 0) {
       return res.status(404).json({ message: "No menu items found" });
     }
-    res.status(200).json(allUsers);
+    res.status(200).json(menuItems);
   } catch (error) {
     console.log("Error fetching menu:" + error);
     res.status(400).json({ error: error.message });
   }
 });
 //Get all active menu items (not including hidden -> for customer)
-router.get("/active", async (res) => {
+router.get("/active", async (req, res) => {
   try {
     const menuItems = await MenuItem.find({ isHidden: false });
     if (menuItems.length === 0) {
@@ -95,6 +95,11 @@ router.put("/:id", async (req, res) => {
     if (!updatedItem) {
       return res.status(404).json({ message: "item not found" });
     }
+    res.status(200).json({
+      success: true,
+      message: "Item updated successfully",
+      data: updatedItem,
+    });
   } catch (error) {
     console.error("error updating menu:", error);
     res.status(400).json({ error: error.message });
@@ -104,7 +109,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const foundItem = await User.findByIdAndDelete(id);
+    const foundItem = await MenuItem.findByIdAndDelete(id);
 
     if (!foundItem) {
       return res.status(404).json({ message: "Item not found" });

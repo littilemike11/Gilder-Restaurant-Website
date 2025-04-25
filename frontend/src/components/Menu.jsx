@@ -1,7 +1,19 @@
 import menu from "/src/menu.js"
 import MenuItem from "./MenuItem"
+import { getActiveMenu } from "../api";
 import { FaDownload } from "react-icons/fa6";
+import { useEffect, useState } from "react";
 export default function Menu() {
+    // const [menu, setMenu] = useState([])
+    // useEffect(() => {
+    //     const fetchMenu = async () => {
+    //         const data = await getActiveMenu();
+    //         console.log(data.data)
+    //         setMenu(data.data);
+    //     };
+
+    //     fetchMenu();
+    // }, []);
 
     return (
         <>
@@ -32,7 +44,7 @@ export default function Menu() {
                 <div className="tab-content border-base-300 bg-base-200 p-10">
                     <h2 className="text-left p-4 text-3xl">Chef Specials</h2>
                     <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-                        {menu.filter((item => item.type == "Chef Specials")).map((item, index) => (
+                        {menu.filter((item => item.type == "Chef Special")).map((item, index) => (
                             <MenuItem key={index} item={item} />
                         ))}
                     </div>
@@ -42,7 +54,7 @@ export default function Menu() {
                 <div className="tab-content border-base-300 bg-base-200 p-10">
                     <h2 className="text-left p-4 text-3xl">Desserts</h2>
                     <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-                        {menu.filter((item => item.type == "Desserts")).map((item, index) => (
+                        {menu.filter((item => item.type == "Dessert")).map((item, index) => (
                             <MenuItem key={index} item={item} />
                         ))}
                     </div>
@@ -52,7 +64,7 @@ export default function Menu() {
                 <div className="tab-content border-base-300 bg-base-200 p-10">
                     <h2 className="text-left p-4 text-3xl">Specialty Beverages</h2>
                     <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-                        {menu.filter((item => item.type == "Specialty Beverages")).map((item, index) => (
+                        {menu.filter((item => item.type == "Specialty Beverage")).map((item, index) => (
                             <MenuItem key={index} item={item} />
                         ))}
                     </div>
@@ -61,7 +73,7 @@ export default function Menu() {
                 <div className="tab-content border-base-300 bg-base-200 p-10">
                     <h2 className="text-left p-4 text-3xl">Sides</h2>
                     <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-                        {menu.filter((item => item.type == "Sides")).map((item, index) => (
+                        {menu.filter((item => item.type == "Side")).map((item, index) => (
                             <MenuItem key={index} item={item} />
                         ))}
                     </div>
@@ -70,7 +82,7 @@ export default function Menu() {
                 <div className="tab-content border-base-300 bg-base-200 p-10">
                     <h2 className="text-left p-4 text-3xl">Addons</h2>
                     <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-                        {menu.filter((item => item.type == "Addons")).map((item, index) => (
+                        {menu.filter((item => item.type == "Addon")).map((item, index) => (
                             <MenuItem key={index} item={item} />
                         ))}
                     </div>

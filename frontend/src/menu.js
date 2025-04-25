@@ -87,7 +87,7 @@ const menu = [
   {
     name: "Soup of the Day (Cup/Bowl)",
     description: "",
-    type: "Sides",
+    type: "Side",
     isVegan: false,
     isVegetarian: false,
     price: "10 / 14", // could also be 14 depending on size
@@ -95,7 +95,7 @@ const menu = [
   {
     name: "Small Greens Salad",
     description: "",
-    type: "Sides",
+    type: "Side",
     isVegan: true,
     isVegetarian: true,
     price: 10,
@@ -103,15 +103,16 @@ const menu = [
   {
     name: "Spring Risotto & Shrimp",
     description: "english peas, fontina cheese, mini tomatoes, ramp butter",
-    type: "Chef Specials",
+    type: "Chef Special",
     isVegan: false,
     isVegetarian: false,
     price: 30,
   },
   {
     name: "Short Rib Banh Mi Sandwich",
-    description: "soy braised beef shirt rib, cucumber, carrot, jalapeno, citrus aioli, cilantro, basil, french fries",
-    type: "Chef Specials",
+    description:
+      "soy braised beef shirt rib, cucumber, carrot, jalapeno, citrus aioli, cilantro, basil, french fries",
+    type: "Chef Special",
     isVegan: false,
     isVegetarian: false,
     price: 24,
@@ -119,7 +120,7 @@ const menu = [
   {
     name: "Asparagus Velvet Soup",
     description: "a silky blend of asparagus, potatoes and spring onions",
-    type: "Chef Specials",
+    type: "Chef Special",
     isVegan: false,
     isVegetarian: true,
     price: "10/14",
@@ -127,7 +128,7 @@ const menu = [
   {
     name: "House-Made Milk Rolls",
     description: "",
-    type: "Sides",
+    type: "Side",
     isVegan: false,
     isVegetarian: true,
     price: 9,
@@ -135,7 +136,7 @@ const menu = [
   {
     name: "Side of Mushrooms",
     description: "",
-    type: "Sides",
+    type: "Side",
     isVegan: true,
     isVegetarian: true,
     price: 8,
@@ -143,7 +144,7 @@ const menu = [
   {
     name: "Side of Bacon",
     description: "",
-    type: "Sides",
+    type: "Side",
     isVegan: false,
     isVegetarian: false,
     price: 8,
@@ -151,7 +152,7 @@ const menu = [
   {
     name: "Add Bacon or a Fried Egg",
     description: "",
-    type: "Addons",
+    type: "Addon",
     isVegan: false,
     isVegetarian: false,
     price: 4,
@@ -159,7 +160,7 @@ const menu = [
   {
     name: "Add Avocado or Mushrooms",
     description: "",
-    type: "Addons",
+    type: "Addon",
     isVegan: true,
     isVegetarian: true,
     price: 4,
@@ -167,7 +168,7 @@ const menu = [
   {
     name: "Add Chicken or Tuna Confit",
     description: "",
-    type: "Addons",
+    type: "Addon",
     isVegan: false,
     isVegetarian: false,
     price: 10,
@@ -175,7 +176,7 @@ const menu = [
   {
     name: "Add Salmon or Shrimp",
     description: "",
-    type: "Addons",
+    type: "Addon",
     isVegan: false,
     isVegetarian: false,
     price: 12,
@@ -183,7 +184,7 @@ const menu = [
   {
     name: "The Butterfly",
     description: "butterfly pea flower tea, lemonade",
-    type: "Specialty Beverages",
+    type: "Specialty Beverage",
     isVegan: true,
     isVegetarian: true,
     price: 10,
@@ -192,7 +193,7 @@ const menu = [
     name: "Cherry Lime Rickey",
     img: cherry_lime_ricky,
     description: "amarena cherries, lime, soda",
-    type: "Specialty Beverages",
+    type: "Specialty Beverage",
     isVegan: true,
     isVegetarian: true,
     price: 10,
@@ -201,7 +202,7 @@ const menu = [
     name: "Bellini",
     img: belimi,
     description: "peach puree, sparkling white grape juice",
-    type: "Specialty Beverages",
+    type: "Specialty Beverage",
     isVegan: true,
     isVegetarian: true,
     price: 10,
@@ -210,7 +211,7 @@ const menu = [
     name: "Melon Mojito",
     img: melon_mojito,
     description: "honeydew, mint, agave, lime",
-    type: "Specialty Beverages",
+    type: "Specialty Beverage",
     isVegan: true,
     isVegetarian: true,
     price: 10,
@@ -218,7 +219,7 @@ const menu = [
   {
     name: "Zardetto Spritz",
     description: "prosecco, rhubarb-orange infused amaro",
-    type: "Specialty Beverages",
+    type: "Specialty Beverage",
     isVegan: true,
     isVegetarian: true,
     price: 16,
@@ -226,7 +227,7 @@ const menu = [
   {
     name: "New York Style Cheesecake",
     description: "",
-    type: "Desserts",
+    type: "Dessert",
     isVegan: false,
     isVegetarian: true,
     price: 12,
@@ -234,7 +235,7 @@ const menu = [
   {
     name: "Strawberry Panna Cotta",
     description: "",
-    type: "Desserts",
+    type: "Dessert",
     isVegan: true,
     isVegetarian: true,
     price: 12,
@@ -242,7 +243,7 @@ const menu = [
   {
     name: "Chocolate Chip Skillet Cookie",
     description: "",
-    type: "Desserts",
+    type: "Dessert",
     isVegan: false,
     isVegetarian: true,
     price: 12,
@@ -250,7 +251,7 @@ const menu = [
   {
     name: "Affogato",
     description: "",
-    type: "Desserts",
+    type: "Dessert",
     isVegan: false,
     isVegetarian: true,
     price: 8,
