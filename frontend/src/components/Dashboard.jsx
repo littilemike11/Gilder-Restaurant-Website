@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { getMenu, updateFoodItem, deleteFoodItem, AddFoodItem } from "../api";
 import { FaEye, FaEyeSlash, FaCaretDown, FaPlus, FaTrashAlt } from "react-icons/fa";
 import AddItemForm from "./AddItemForm";
+import DeleteItemForm from "./DeleteItemForm";
+import UpdateItemForm from "./UpdateItemForm";
 export default function Dashboard() {
     const [menu, setMenu] = useState([])
     const itemTypes = [
@@ -18,6 +20,7 @@ export default function Dashboard() {
         const response = await getMenu();
         setMenu(response.data)
         console.log(response.data)
+
     }
     useEffect(() => {
         fetchMenu()
@@ -32,7 +35,7 @@ export default function Dashboard() {
 
 
             <div className="overflow-x-auto w-full py-4">
-                <table className="table bg-base-100 rounded-box shadow-md">
+                <table className="table table-zebra bg-base-100 rounded-box shadow-md">
                     {/* head */}
                     <thead>
                         <tr>
@@ -58,7 +61,7 @@ export default function Dashboard() {
                             <th>Vegan</th>
                             <th>Vegetarian</th>
                             <th>Hidden</th>
-                            <th> <AddItemForm /> </th>
+                            <th> <AddItemForm itemTypes={itemTypes} AddFoodItem={AddFoodItem} menu={menu} setMenu={setMenu} /> </th>
                             <th></th>
                         </tr>
                     </thead>
@@ -103,10 +106,10 @@ export default function Dashboard() {
                                 <td>{item.isVegetarian && <div className="badge badge-primary badge-sm mask mask-circle">V</div>}</td>
                                 <td>{item.isHidden ? <FaEyeSlash /> : <FaEye />}</td>
                                 <td>
-                                    <button className="btn btn-ghost btn-xs">edit</button>
+                                    <UpdateItemForm item={item} updateFoodItem={updateFoodItem} itemTypes={itemTypes} menu={menu} setMenu={setMenu} />
                                 </td>
                                 <th>
-                                    <button className="btn btn-ghost btn-xs"><FaTrashAlt /></button>
+                                    <DeleteItemForm id={item._id} name={item.name} deleteFoodItem={deleteFoodItem} menu={menu} setMenu={setMenu} />
                                 </th>
 
                             </tr>
@@ -124,7 +127,7 @@ export default function Dashboard() {
                             <th>Vegan</th>
                             <th>Vegetarian</th>
                             <th>Hidden</th>
-                            <th><AddItemForm /></th>
+                            <th><AddItemForm itemTypes={itemTypes} AddFoodItem={AddFoodItem} menu={menu} setMenu={setMenu} /></th>
                         </tr>
                     </tfoot>
                 </table>
