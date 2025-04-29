@@ -1,4 +1,4 @@
-import GilderLocation from "/src/assets/GilderLocation.jpg"
+import GilderLocation from "../assets/GilderLocation.jpg"
 export default function HoursLocation() {
     return (
         <>

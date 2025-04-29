@@ -1,4 +1,4 @@
-import restaurant_gilder from "/src/assets/restaurant_gilder.jpg"
+import restaurant_gilder from "../assets/restaurant_gilder.jpg"
 
 export default function Hero() {
     return (

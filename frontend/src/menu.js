@@ -1,6 +1,6 @@
-import belimi from "/src/assets/belimi.jpeg";
-import cherry_lime_ricky from "/src/assets/cherry_lime_ricky.jpeg";
-import melon_mojito from "/src/assets/melon_mojito.jpeg";
+import belimi from "./assets/belimi.jpeg";
+import cherry_lime_ricky from "./assets/cherry_lime_ricky.jpeg";
+import melon_mojito from "./assets/melon_mojito.jpeg";
 const menu = [
   {
     name: "Smoked Salmon",
