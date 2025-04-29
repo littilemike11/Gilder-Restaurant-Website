@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import menuPlaceholder from "../menu.js"
 import { getMenu, updateFoodItem, deleteFoodItem, AddFoodItem } from "../api";
 import { FaEye, FaEyeSlash, FaCaretDown } from "react-icons/fa";
 import AddItemForm from "./AddItemForm";
 import DeleteItemForm from "./DeleteItemForm";
 import UpdateItemForm from "./UpdateItemForm";
 export default function Dashboard() {
-    const [menu, setMenu] = useState([])
+    const [menu, setMenu] = useState(menuPlaceholder)
     const itemTypes = [
         "First",
         "Second",
@@ -19,14 +20,14 @@ export default function Dashboard() {
     const [filterType, setFilterType] = useState(""); // empty = show all
     const filteredMenu = filterType ? menu.filter(item => item.type === filterType) : menu;
 
-    const fetchMenu = async () => {
-        const response = await getMenu();
-        setMenu(response.data)
+    // const fetchMenu = async () => {
+    //     const response = await getMenu();
+    //     setMenu(response.data)
 
-    }
-    useEffect(() => {
-        fetchMenu()
-    }, [])
+    // }
+    // useEffect(() => {
+    //     fetchMenu()
+    // }, [])
     return (
         <>
             <div className="p-8">
@@ -78,11 +79,11 @@ export default function Dashboard() {
                                     <input type="checkbox" className="checkbox" />
                                 </label> */}
 
-                                    {item.image &&
+                                    {item.img &&
                                         <div className="avatar">
                                             <div className="mask mask-squircle h-12 w-12">
                                                 <img
-                                                    src={item.image}
+                                                    src={item.img}
                                                     alt={`image of ${item.name}`} />
                                             </div>
                                         </div>}

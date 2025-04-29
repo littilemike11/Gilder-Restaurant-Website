@@ -8,9 +8,14 @@ export default function DeleteItemForm({ id, name, deleteFoodItem, menu, setMenu
 
     const handleDelete = async () => {
         try {
-            setMenu(menu.filter(item => item._id !== id)); // remove item locally
-            const response = await deleteFoodItem(id);
-            console.log(response.data)
+            // setMenu(menu.filter(item => item._id !== id)); // remove item locally
+            // const response = await deleteFoodItem(id);
+            // console.log(response.data)
+
+            // placeholder until server setup
+            setMenu(menu.filter(item => item.name !== name))
+            console.log("deleted Item", name)
+
             closeModal(); // Close the modal after deleting
         } catch (error) {
             console.error("Delete Failed:", error)

@@ -26,11 +26,15 @@ export default function UpdateItemForm({ item, updateFoodItem, itemTypes, menu, 
         };
 
         try {
-            const response = await updateFoodItem(item._id, newItem);
-            console.log("Updated Item", response.data);
+            // const response = await updateFoodItem(item._id, newItem);
+            // console.log("Updated Item", response.data);
 
             // Update local menu
-            setMenu(menu.map(m => m._id === item._id ? response.data.data : m));
+            // setMenu(menu.map(m => m._id === item._id ? response.data.data : m));
+
+            // placeholder until server setup
+            setMenu(menu.map(m => m.name === item.name ? newItem : m));
+            console.log("updated Item", item)
 
             closeModal();
         } catch (err) {

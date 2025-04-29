@@ -24,9 +24,13 @@ export default function AddItemForm({ itemTypes, AddFoodItem, menu, setMenu }) {
         };
 
         try {
-            const response = await AddFoodItem(item);
-            console.log("Created Item", response.data)
-            setMenu([...menu, response.data.data])
+            // const response = await AddFoodItem(item);
+            // console.log("Created Item", response.data)
+            // setMenu([...menu, response.data.data])
+            // placeholder until server setup
+            setMenu([...menu, item])
+            console.log("Created Item", item)
+
             document.getElementById('my_modal_4').close();
 
             // Reset form (optional)
@@ -129,6 +133,7 @@ export default function AddItemForm({ itemTypes, AddFoodItem, menu, setMenu }) {
                                 </div>
                             </div>
                         </fieldset>
+
 
                         <div className="modal-action flex justify-between w-full">
                             <button type="submit" className="btn btn-success">Create</button>
