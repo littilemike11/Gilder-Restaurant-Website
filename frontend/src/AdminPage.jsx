@@ -6,14 +6,15 @@ export default function AdminPage() {
     const [password, setPassword] = useState("")
     const adminUsername = import.meta.env.VITE_USERNAME;
     const adminPassword = import.meta.env.VITE_PASSWORD;
-
+    const [wrongCredentials, setWrongCredentials] = useState(false)
     const login = () => {
         if (!username) return;
         if (!password) return;
         if (username == adminUsername && password == adminPassword) {
             setIsLogin(true)
-            console.log("logged in")
-        } else console.log("incorrect credentials")
+        } else {
+            setWrongCredentials(true)
+        }
     }
     return (
         <>
@@ -24,12 +25,19 @@ export default function AdminPage() {
                         <legend className="fieldset-legend">Login</legend>
 
                         <label className="label">Username</label>
-                        <input type="text" min={1} required className="input validator" onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
+                        <input type="text" min={1} required className="input validator" onChange={(e) => { setUsername(e.target.value); setWrongCredentials(false) }} placeholder="Username" />
                         <p className="validator-hint">Please enter Username</p>
 
                         <label className="label">Password</label>
-                        <input type="password" min={1} required className="input validator" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+                        <input type="password" min={1} required className="input validator" onChange={(e) => { setPassword(e.target.value); setWrongCredentials(false) }} placeholder="Password" />
                         <p className="validator-hint">Please enter Password</p>
+                        {wrongCredentials && (
+                            <div className="p-2">
+                                <span className="badge badge-error">
+                                    Wrong Username or Password
+                                </span>
+                            </div>
+                        )}
                         <button onClick={login} className="btn btn-neutral mt-4">Login</button>
                     </fieldset>
                 </div>}

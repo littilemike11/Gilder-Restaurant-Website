@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getMenu, updateFoodItem, deleteFoodItem, AddFoodItem } from "../api";
-import { FaEye, FaEyeSlash, FaCaretDown, FaPlus, FaTrashAlt } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaCaretDown } from "react-icons/fa";
 import AddItemForm from "./AddItemForm";
 import DeleteItemForm from "./DeleteItemForm";
 import UpdateItemForm from "./UpdateItemForm";
@@ -16,10 +16,12 @@ export default function Dashboard() {
         "Side",
         "Addon",
     ];
+    const [filterType, setFilterType] = useState(""); // empty = show all
+    const filteredMenu = filterType ? menu.filter(item => item.type === filterType) : menu;
+
     const fetchMenu = async () => {
         const response = await getMenu();
         setMenu(response.data)
-        console.log(response.data)
 
     }
     useEffect(() => {
@@ -43,19 +45,21 @@ export default function Dashboard() {
 
                             </th>
                             <th>Name</th>
-                            <th>{/* change popover-1 and --anchor-1 names. Use unique names for each dropdown */}
-                                {/* For TSX uncomment the commented types below */}
-                                <button className="btn" popovertarget="popover-1" style={{ anchorName: "--anchor-1" } /* as React.CSSProperties */}>
-                                    Type <FaCaretDown />
-                                </button>
+                            <th>
+                                <select
+                                    className="select w-32 rounded-box bg-base-100 shadow-sm"
+                                    value={filterType}
+                                    onChange={(e) => setFilterType(e.target.value)}>
 
-                                <ul className="dropdown menu w-52 rounded-box bg-base-100 shadow-sm"
-                                    popover="auto" id="popover-1" style={{ positionAnchor: "--anchor-1" } /* as React.CSSProperties */}>
+                                    <option value={""}>All</option> {/* Reset filter */}
+
                                     {itemTypes.map((type, index) => (
-                                        <li key={index}><a>{type}</a></li>
+                                        <option key={index} value={type}>
+                                            {type}
+                                        </option>
                                     ))}
-
-                                </ul></th>
+                                </select>
+                            </th>
                             <th>Description</th>
                             <th>Price($)</th>
                             <th>Vegan</th>
@@ -67,19 +71,21 @@ export default function Dashboard() {
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        {menu.map((item, index) => (
+                        {filteredMenu.map((item, index) => (
                             <tr key={index}>
                                 <th>
                                     {/* <label>
                                     <input type="checkbox" className="checkbox" />
                                 </label> */}
-                                    <div className="avatar">
-                                        <div className="mask mask-squircle h-12 w-12">
-                                            <img
-                                                src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                                                alt="Avatar Tailwind CSS Component" />
-                                        </div>
-                                    </div>
+
+                                    {item.image &&
+                                        <div className="avatar">
+                                            <div className="mask mask-squircle h-12 w-12">
+                                                <img
+                                                    src={item.image}
+                                                    alt={`image of ${item.name}`} />
+                                            </div>
+                                        </div>}
                                 </th>
 
                                 <td>
@@ -93,7 +99,6 @@ export default function Dashboard() {
                                     </div> */}
                                         <div>
                                             <div className="font-bold">{item.name}</div>
-                                            <div className="text-sm opacity-50">{item.type}</div>
                                         </div>
                                     </div>
                                 </td>
