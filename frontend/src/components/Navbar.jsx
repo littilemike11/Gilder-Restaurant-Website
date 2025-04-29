@@ -37,7 +37,7 @@ export default function Navbar() {
                             </label>
                         </div>
                         <TranslateWidget />
-                        <div className="mx-2 flex-1 px-2">The Restaurant at Gilder</div>
+                        <div className="mx-2 flex-1 px-2 ">The Restaurant at Gilder</div>
                         <div className="hidden flex-none lg:block">
                             <ul className="menu menu-horizontal  gap-2 text-xl">
                                 {/* Navbar menu content here */}

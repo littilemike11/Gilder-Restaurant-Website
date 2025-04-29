@@ -15,7 +15,9 @@ export default function Hero() {
                         An exciting new table-service dining option at the American Museum of Natural History
                     </p>
 
-                    <a className="btn btn-primary" href="https://resy.com/cities/new-york-ny/venues/the-restaurant-at-gilder">Make a Reservation</a>
+                    <button className="btn btn-primary btn-xl">
+                        <a href="https://resy.com/cities/new-york-ny/venues/the-restaurant-at-gilder">Make a Reservation</a>
+                    </button>
                 </div>
             </div>
         </div >

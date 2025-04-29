@@ -1,11 +1,11 @@
 export default function MenuItem({ item }) {
     return (
-        <div className="card bg-base-100 w-auto h-full shadow-sm">
+        <div className="card bg-base-100 w-auto h-full text-amber-900 shadow-sm">
 
             <div className="card-body">
                 <h2 className="card-title">
                     {item.name}
-                    <div className="badge badge-primary">{item.price}</div>
+                    <div className="badge badge-primary h-fit">{item.price}</div>
                 </h2>
                 <p>{item.description}</p>
 
