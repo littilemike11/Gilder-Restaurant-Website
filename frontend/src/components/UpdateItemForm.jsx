@@ -52,7 +52,7 @@ export default function UpdateItemForm({ item, updateFoodItem, itemTypes, menu, 
 
             {isOpen &&
                 <dialog open className="modal">
-                    <div className="modal-box w-11/12 max-w-5xl">
+                    <div className="modal-box w-max">
                         <form onSubmit={handleSubmit}>
                             <h3 className="font-bold text-lg">Edit a Menu Item</h3>
                             <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
