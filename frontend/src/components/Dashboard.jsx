@@ -113,10 +113,10 @@ export default function Dashboard({ isAdmin = false }) {
                                 <td>{item.isVegetarian && <div className="badge badge-primary badge-sm mask mask-circle">V</div>}</td>
                                 <td>{item.isHidden ? <FaEyeSlash /> : <FaEye />}</td>
                                 <td>
-                                    <UpdateItemForm item={item} updateFoodItem={updateFoodItem} itemTypes={itemTypes} menu={menu} setMenu={setMenu} />
+                                    <UpdateItemForm isAdmin={isAdmin} item={item} updateFoodItem={updateFoodItem} itemTypes={itemTypes} menu={menu} setMenu={setMenu} />
                                 </td>
                                 <th>
-                                    <DeleteItemForm id={item._id} name={item.name} deleteFoodItem={deleteFoodItem} menu={menu} setMenu={setMenu} />
+                                    <DeleteItemForm isAdmin={isAdmin} id={item._id} name={item.name} deleteFoodItem={deleteFoodItem} menu={menu} setMenu={setMenu} />
                                 </th>
 
                             </tr>
@@ -134,7 +134,7 @@ export default function Dashboard({ isAdmin = false }) {
                             <th>Vegan</th>
                             <th>Vegetarian</th>
                             <th>Hidden</th>
-                            <th><AddItemForm itemTypes={itemTypes} AddFoodItem={AddFoodItem} menu={menu} setMenu={setMenu} /></th>
+                            <th><AddItemForm isAdmin={isAdmin} itemTypes={itemTypes} AddFoodItem={AddFoodItem} menu={menu} setMenu={setMenu} /></th>
                         </tr>
                     </tfoot>
                 </table>
