@@ -1,6 +1,6 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { useState } from "react";
-export default function DeleteItemForm({ id, name, deleteFoodItem, menu, setMenu }) {
+export default function DeleteItemForm({ isAdmin, id, name, deleteFoodItem, menu, setMenu }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const openModal = () => setIsOpen(true);
@@ -8,13 +8,16 @@ export default function DeleteItemForm({ id, name, deleteFoodItem, menu, setMenu
 
     const handleDelete = async () => {
         try {
-            // setMenu(menu.filter(item => item._id !== id)); // remove item locally
-            // const response = await deleteFoodItem(id);
-            // console.log(response.data)
 
-            // placeholder until server setup
-            setMenu(menu.filter(item => item.name !== name))
-            console.log("deleted Item", name)
+            if (isAdmin) {
+                setMenu(menu.filter(item => item._id !== id)); // remove item locally
+                const response = await deleteFoodItem(id);
+                console.log(response.data)
+            } else {
+                // placeholder until server setup
+                setMenu(menu.filter(item => item.name !== name))
+                console.log("deleted Item", name)
+            }
 
             closeModal(); // Close the modal after deleting
         } catch (error) {

@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import AdminPage from "./AdminPage.jsx"
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Dashboard from './components/Dashboard.jsx'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
   {
     path: '/admin',
     element: <AdminPage />
+  },
+  {
+    path: '/test',
+    element: <Dashboard />
   }
 ])
 createRoot(document.getElementById('root')).render(

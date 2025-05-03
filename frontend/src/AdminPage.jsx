@@ -19,7 +19,7 @@ export default function AdminPage() {
     return (
         <>
             {isLogin ?
-                <Dashboard /> :
+                <Dashboard isAdmin={true} /> :
                 <div className="h-dvh flex justify-center items-center">
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
                         <legend className="fieldset-legend">Login</legend>

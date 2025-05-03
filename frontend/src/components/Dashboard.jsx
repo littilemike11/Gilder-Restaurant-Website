@@ -6,8 +6,8 @@ import { FaEye, FaEyeSlash, FaCaretDown } from "react-icons/fa";
 import AddItemForm from "./AddItemForm";
 import DeleteItemForm from "./DeleteItemForm";
 import UpdateItemForm from "./UpdateItemForm";
-export default function Dashboard() {
-    const [menu, setMenu] = useState(menuPlaceholder)
+export default function Dashboard({ isAdmin = false }) {
+    const [menu, setMenu] = useState(isAdmin ? [] : menuPlaceholder)
     const itemTypes = [
         "First",
         "Second",
@@ -20,14 +20,15 @@ export default function Dashboard() {
     const [filterType, setFilterType] = useState(""); // empty = show all
     const filteredMenu = filterType ? menu.filter(item => item.type === filterType) : menu;
 
-    // const fetchMenu = async () => {
-    //     const response = await getMenu();
-    //     setMenu(response.data)
+    const fetchMenu = async () => {
+        if (!isAdmin) return
+        const response = await getMenu();
+        setMenu(response.data)
 
-    // }
-    // useEffect(() => {
-    //     fetchMenu()
-    // }, [])
+    }
+    useEffect(() => {
+        fetchMenu()
+    }, [])
     return (
         <>
             <div className="p-8">
@@ -66,7 +67,7 @@ export default function Dashboard() {
                             <th>Vegan</th>
                             <th>Vegetarian</th>
                             <th>Hidden</th>
-                            <th> <AddItemForm itemTypes={itemTypes} AddFoodItem={AddFoodItem} menu={menu} setMenu={setMenu} /> </th>
+                            <th> <AddItemForm isAdmin={isAdmin} itemTypes={itemTypes} AddFoodItem={AddFoodItem} menu={menu} setMenu={setMenu} /> </th>
                             <th></th>
                         </tr>
                     </thead>

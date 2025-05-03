@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 
-export default function AddItemForm({ itemTypes, AddFoodItem, menu, setMenu }) {
+export default function AddItemForm({ isAdmin, itemTypes, AddFoodItem, menu, setMenu }) {
     const [name, setName] = useState("");
     const [itemType, setType] = useState("");
     const [description, setDescription] = useState("");
@@ -24,12 +24,16 @@ export default function AddItemForm({ itemTypes, AddFoodItem, menu, setMenu }) {
         };
 
         try {
-            // const response = await AddFoodItem(item);
-            // console.log("Created Item", response.data)
-            // setMenu([...menu, response.data.data])
-            // placeholder until server setup
-            setMenu([...menu, item])
-            console.log("Created Item", item)
+            if (isAdmin) {
+                const response = await AddFoodItem(item);
+                console.log("Created Item", response.data)
+                setMenu([...menu, response.data.data])
+            }
+            else {
+                // placeholder until server setup
+                setMenu([...menu, item])
+                console.log("Created Item", item)
+            }
 
             document.getElementById('my_modal_4').close();
 

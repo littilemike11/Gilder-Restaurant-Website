@@ -1,5 +1,5 @@
 import { useState } from "react";
-export default function UpdateItemForm({ item, updateFoodItem, itemTypes, menu, setMenu }) {
+export default function UpdateItemForm({ isAdmin, item, updateFoodItem, itemTypes, menu, setMenu }) {
     const [name, setName] = useState(item.name);
     const [itemType, setType] = useState(item.type);
     const [description, setDescription] = useState(item.description);
@@ -26,15 +26,16 @@ export default function UpdateItemForm({ item, updateFoodItem, itemTypes, menu, 
         };
 
         try {
-            // const response = await updateFoodItem(item._id, newItem);
-            // console.log("Updated Item", response.data);
-
-            // Update local menu
-            // setMenu(menu.map(m => m._id === item._id ? response.data.data : m));
-
-            // placeholder until server setup
-            setMenu(menu.map(m => m.name === item.name ? newItem : m));
-            console.log("updated Item", item)
+            if (isAdmin) {
+                const response = await updateFoodItem(item._id, newItem);
+                console.log("Updated Item", response.data);
+                // Update local menu
+                setMenu(menu.map(m => m._id === item._id ? response.data.data : m));
+            } else {
+                // placeholder until server setup
+                setMenu(menu.map(m => m.name === item.name ? newItem : m));
+                console.log("updated Item", item)
+            }
 
             closeModal();
         } catch (err) {
