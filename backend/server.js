@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
+
 dotenv.config();
 const app = express();
 
@@ -8,6 +10,11 @@ const PORT = 3000;
 import router from "./MenuRoutes.js";
 app.use(express.json());
 app.use("/api/v1", router);
+app.use(
+  cors({
+    origin: "https://the-restaurant-at-gilder.netlify.app/", // or "*" during testing
+  })
+);
 const uri = process.env.MONGO_URI;
 
 const clientOptions = {
