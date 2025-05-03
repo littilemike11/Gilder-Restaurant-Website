@@ -8,13 +8,26 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 import router from "./MenuRoutes.js";
-app.use(express.json());
-app.use("/api/v1", router);
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://the-restaurant-at-gilder.netlify.app",
+];
+
 app.use(
   cors({
-    origin: "https://the-restaurant-at-gilder.netlify.app/", // or "*" during testing
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
   })
 );
+app.use(express.json());
+app.use("/api/v1", router);
+
 const uri = process.env.MONGO_URI;
 
 const clientOptions = {
