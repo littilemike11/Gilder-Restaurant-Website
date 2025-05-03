@@ -9,6 +9,19 @@ export default function AddItemForm({ isAdmin, itemTypes, AddFoodItem, menu, set
     const [vegan, setVegan] = useState(false);
     const [vegetarian, setVegetarian] = useState(false);
     const [hidden, setHidden] = useState(false);
+    const [preview, setPreview] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
+
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setPreview(URL.createObjectURL(file));
+            console.log(file)
+            console.log(preview)
+            setImageFile(file); // Save actual file to state
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,7 +33,8 @@ export default function AddItemForm({ isAdmin, itemTypes, AddFoodItem, menu, set
             price,
             isVegan: vegan,
             isVegetarian: vegetarian,
-            isHidden: hidden
+            isHidden: hidden,
+            image: imageFile
         };
 
         try {
@@ -46,7 +60,7 @@ export default function AddItemForm({ isAdmin, itemTypes, AddFoodItem, menu, set
             setVegetarian(false);
             setHidden(false);
         } catch (error) {
-            console.error("Updated Failed", error)
+            console.error("Creation Failed", error)
         }
 
 
@@ -87,6 +101,19 @@ export default function AddItemForm({ isAdmin, itemTypes, AddFoodItem, menu, set
                                     <option key={index} value={type}>{type}</option>
                                 ))}
                             </select>
+                            <label className="label">Image</label>
+                            <input
+                                type="file"
+                                className="file-input"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                            />
+                            <div className="avatar mt-4 justify-center">
+                                <div className="w-24 rounded overflow-hidden">
+                                    {preview && <img src={preview} alt="Preview" />}
+                                </div>
+                            </div>
+
 
                             <label className="label">Description</label>
                             <textarea
@@ -145,7 +172,7 @@ export default function AddItemForm({ isAdmin, itemTypes, AddFoodItem, menu, set
                         </div>
                     </form>
                 </div>
-            </dialog>
+            </dialog >
         </>
     );
 }

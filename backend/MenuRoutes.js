@@ -1,5 +1,6 @@
 import express from "express";
 const router = express.Router();
+import upload from "./uploadMiddleware.js"; // adjust path if needed
 
 import MenuItem from "./menuModel.js";
 
@@ -30,18 +31,12 @@ router.get("/active", async (req, res) => {
   }
 });
 //Add menu item
-router.post("/", async (req, res) => {
+router.post("/", upload.single("image"), async (req, res) => {
   try {
-    const {
-      name,
-      description,
-      type,
-      isVegan,
-      isVegetarian,
-      price,
-      isHidden,
-      image,
-    } = req.body;
+    const { name, description, type, isVegan, isVegetarian, price, isHidden } =
+      req.body;
+    const imageUrl = req.file?.path; // Cloudinary gives you a hosted image URL
+
     //create and save new menu item
     const newItem = new MenuItem({
       name,
@@ -51,7 +46,7 @@ router.post("/", async (req, res) => {
       isVegetarian,
       price,
       isHidden,
-      image,
+      image: imageUrl,
     });
     await newItem.save();
     res.status(201).json({
