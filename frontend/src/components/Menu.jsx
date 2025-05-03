@@ -1,19 +1,19 @@
-import menu from "/src/menu.js"
+// import menu from "/src/menu.js"
 import MenuItem from "./MenuItem"
 import { getActiveMenu } from "../api";
 import { FaDownload } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 export default function Menu() {
-    // const [menu, setMenu] = useState([])
-    // useEffect(() => {
-    //     const fetchMenu = async () => {
-    //         const data = await getActiveMenu();
-    //         console.log(data.data)
-    //         setMenu(data.data);
-    //     };
+    const [menu, setMenu] = useState([])
+    useEffect(() => {
+        const fetchMenu = async () => {
+            const data = await getActiveMenu();
+            console.log(data.data)
+            setMenu(data.data);
+        };
 
-    //     fetchMenu();
-    // }, []);
+        fetchMenu();
+    }, []);
 
     return (
         <>
