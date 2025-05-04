@@ -33,13 +33,7 @@ const menuSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  image: {
-    type: {
-      path: { type: String },
-      public_id: { type: String },
-    },
-    default: null,
-  },
+  image: String,
   isHidden: {
     type: Boolean,
     default: false,

@@ -1,7 +1,6 @@
 import express from "express";
 const router = express.Router();
 import upload from "./uploadMiddleware.js"; // adjust path if needed
-
 import MenuItem from "./menuModel.js";
 
 //Get all menu items (including hidden -> staff)
@@ -35,13 +34,8 @@ router.post("/", upload.single("image"), async (req, res) => {
   try {
     const { name, description, type, isVegan, isVegetarian, price, isHidden } =
       req.body;
-    // Check for uploaded image
-    const imageData = req.file
-      ? {
-          path: req.file.path, // Cloudinary-hosted URL
-          public_id: req.file.filename || req.file.public_id, // Public ID for deletion
-        }
-      : null;
+    const imageUrl = req.file?.path; // Cloudinary gives you a hosted image URL
+
     //create and save new menu item
     const newItem = new MenuItem({
       name,
@@ -51,7 +45,7 @@ router.post("/", upload.single("image"), async (req, res) => {
       isVegetarian,
       price,
       isHidden,
-      image: imageData,
+      image: imageUrl,
     });
     await newItem.save();
     res.status(201).json({
@@ -90,15 +84,14 @@ router.put("/:id", upload.single("image"), async (req, res) => {
       }
 
       // Delete the old image from Cloudinary (if it exists)
-      if (item.image?.public_id) {
-        await cloudinary.uploader.destroy(item.image.public_id);
+      if (item.image) {
+        const url = item.image;
+        const publicId = extractPublicIdFromUrl(url);
+        await cloudinary.uploader.destroy(publicId);
       }
 
-      // Set the new image (path + public_id)
-      updatedFields.image = {
-        path: req.file.path,
-        public_id: req.file.filename || req.file.public_id, // filename comes from CloudinaryStorage
-      };
+      // Set the new image
+      updatedFields.image = req.file.path;
     }
 
     const updatedItem = await MenuItem.findByIdAndUpdate(id, updatedFields, {
@@ -127,9 +120,12 @@ router.delete("/:id", async (req, res) => {
     if (!foundItem) {
       return res.status(404).json({ message: "Item not found" });
     }
-    // Delete the image from Cloudinary using the public_id
-    if (foundItem.image?.public_id) {
-      await cloudinary.uploader.destroy(foundItem.image.public_id); // Delete from Cloudinary
+    // Delete the old image from Cloudinary (if it exists)
+    if (foundItem.image) {
+      const url = foundItem.image;
+      const publicId = extractPublicIdFromUrl(url);
+      console.log(publicId);
+      await cloudinary.uploader.destroy(publicId);
     }
     await MenuItem.findByIdAndDelete(id);
     res.status(200).json({ message: "Food Item deleted successfully" });
@@ -139,4 +135,8 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+function extractPublicIdFromUrl(url) {
+  const match = url.match(/upload\/(?:v\d+\/)?(.+)\.\w+$/);
+  return match ? match[1] : null;
+}
 export default router;

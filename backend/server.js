@@ -2,20 +2,22 @@ import mongoose from "mongoose";
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-
+import router from "./menuRoutes.js";
 dotenv.config();
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-import router from "./MenuRoutes.js";
+
 const allowedOrigins = [
   "http://localhost:5173",
   "https://the-restaurant-at-gilder.netlify.app",
 ];
+app.options("*", cors()); // 👈 Allow preflight requests globally
 
 app.use(
   cors({
     origin: function (origin, callback) {
+      console.log("CORS Origin:", origin); // 👈 debug log
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {

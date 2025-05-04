@@ -30,7 +30,7 @@ const testMenu = [
     type: "First",
     isVegan: false,
     isVegetarian: false,
-    image: null,
+    image: "",
     price: 24,
   },
   {
@@ -39,7 +39,7 @@ const testMenu = [
     type: "First",
     isVegan: false,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: 23,
   },
   {
@@ -48,7 +48,7 @@ const testMenu = [
     type: "First",
     isVegan: true,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: 20,
   },
   {
@@ -57,7 +57,7 @@ const testMenu = [
     type: "First",
     isVegan: false,
     isVegetarian: false,
-    image: null,
+    image: "",
     price: 18,
   },
   {
@@ -66,7 +66,7 @@ const testMenu = [
     type: "Second",
     isVegan: false,
     isVegetarian: false,
-    image: null,
+    image: "",
     price: 30,
   },
   {
@@ -75,7 +75,7 @@ const testMenu = [
     type: "Second",
     isVegan: false,
     isVegetarian: false,
-    image: null,
+    image: "",
     price: 28,
   },
   {
@@ -84,7 +84,7 @@ const testMenu = [
     type: "Second",
     isVegan: false,
     isVegetarian: false,
-    image: null,
+    image: "",
     price: 25,
   },
   {
@@ -94,7 +94,7 @@ const testMenu = [
     type: "Second",
     isVegan: false,
     isVegetarian: false,
-    image: null,
+    image: "",
     price: 26,
   },
   {
@@ -103,7 +103,7 @@ const testMenu = [
     type: "Second",
     isVegan: false,
     isVegetarian: false,
-    image: null,
+    image: "",
     price: 24,
   },
   {
@@ -112,7 +112,7 @@ const testMenu = [
     type: "Second",
     isVegan: true,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: 22,
   },
   {
@@ -121,7 +121,7 @@ const testMenu = [
     type: "Side",
     isVegan: false,
     isVegetarian: false,
-    image: null,
+    image: "",
     price: "10 / 14", // could also be 14 depending on size
   },
   {
@@ -130,7 +130,7 @@ const testMenu = [
     type: "Side",
     isVegan: true,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: 10,
   },
   {
@@ -139,7 +139,7 @@ const testMenu = [
     type: "Chef Special",
     isVegan: false,
     isVegetarian: false,
-    image: null,
+    image: "",
     price: 30,
   },
   {
@@ -149,7 +149,7 @@ const testMenu = [
     type: "Chef Special",
     isVegan: false,
     isVegetarian: false,
-    image: null,
+    image: "",
     price: 24,
   },
   {
@@ -158,7 +158,7 @@ const testMenu = [
     type: "Chef Special",
     isVegan: false,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: "10/14",
   },
   {
@@ -167,7 +167,7 @@ const testMenu = [
     type: "Side",
     isVegan: false,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: 9,
   },
   {
@@ -176,7 +176,7 @@ const testMenu = [
     type: "Side",
     isVegan: true,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: 8,
   },
   {
@@ -185,7 +185,7 @@ const testMenu = [
     type: "Side",
     isVegan: false,
     isVegetarian: false,
-    image: null,
+    image: "",
     price: 8,
   },
   {
@@ -194,7 +194,7 @@ const testMenu = [
     type: "Addon",
     isVegan: false,
     isVegetarian: false,
-    image: null,
+    image: "",
     price: 4,
   },
   {
@@ -203,7 +203,7 @@ const testMenu = [
     type: "Addon",
     isVegan: true,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: 4,
   },
   {
@@ -212,7 +212,7 @@ const testMenu = [
     type: "Addon",
     isVegan: false,
     isVegetarian: false,
-    image: null,
+    image: "",
     price: 10,
   },
   {
@@ -221,7 +221,7 @@ const testMenu = [
     type: "Addon",
     isVegan: false,
     isVegetarian: false,
-    image: null,
+    image: "",
     price: 12,
   },
   {
@@ -230,7 +230,7 @@ const testMenu = [
     type: "Specialty Beverage",
     isVegan: true,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: 10,
   },
   {
@@ -240,7 +240,7 @@ const testMenu = [
     type: "Specialty Beverage",
     isVegan: true,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: 10,
   },
   {
@@ -249,7 +249,7 @@ const testMenu = [
     type: "Specialty Beverage",
     isVegan: true,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: 10,
   },
   {
@@ -258,7 +258,7 @@ const testMenu = [
     type: "Specialty Beverage",
     isVegan: true,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: 10,
   },
   {
@@ -267,7 +267,7 @@ const testMenu = [
     type: "Specialty Beverage",
     isVegan: true,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: 16,
   },
   {
@@ -276,7 +276,7 @@ const testMenu = [
     type: "Dessert",
     isVegan: false,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: 12,
   },
   {
@@ -285,7 +285,7 @@ const testMenu = [
     type: "Dessert",
     isVegan: true,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: 12,
   },
   {
@@ -294,7 +294,7 @@ const testMenu = [
     type: "Dessert",
     isVegan: false,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: 12,
   },
   {
@@ -303,7 +303,7 @@ const testMenu = [
     type: "Dessert",
     isVegan: false,
     isVegetarian: true,
-    image: null,
+    image: "",
     price: 8,
   },
 ];
