@@ -86,8 +86,8 @@ router.put("/:id", upload.single("image"), async (req, res) => {
       // Delete the old image from Cloudinary (if it exists)
       if (item.image) {
         const url = item.image;
-        const publicId = extractPublicIdFromUrl(url);
-        await cloudinary.uploader.destroy(publicId);
+        // const publicId = extractPublicIdFromUrl(url);
+        // await cloudinary.uploader.destroy(publicId);
       }
 
       // Set the new image
@@ -123,9 +123,9 @@ router.delete("/:id", async (req, res) => {
     // Delete the old image from Cloudinary (if it exists)
     if (foundItem.image) {
       const url = foundItem.image;
-      const publicId = extractPublicIdFromUrl(url);
+      // const publicId = extractPublicIdFromUrl(url);
       console.log(publicId);
-      await cloudinary.uploader.destroy(publicId);
+      // await cloudinary.uploader.destroy(publicId);
     }
     await MenuItem.findByIdAndDelete(id);
     res.status(200).json({ message: "Food Item deleted successfully" });
@@ -135,8 +135,4 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-function extractPublicIdFromUrl(url) {
-  const match = url.match(/upload\/(?:v\d+\/)?(.+)\.\w+$/);
-  return match ? match[1] : null;
-}
 export default router;
