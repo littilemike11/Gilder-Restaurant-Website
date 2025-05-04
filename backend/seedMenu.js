@@ -30,7 +30,7 @@ const testMenu = [
     type: "First",
     isVegan: false,
     isVegetarian: false,
-    img: "",
+    image: null,
     price: 24,
   },
   {
@@ -39,7 +39,7 @@ const testMenu = [
     type: "First",
     isVegan: false,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: 23,
   },
   {
@@ -48,7 +48,7 @@ const testMenu = [
     type: "First",
     isVegan: true,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: 20,
   },
   {
@@ -57,7 +57,7 @@ const testMenu = [
     type: "First",
     isVegan: false,
     isVegetarian: false,
-    img: "",
+    image: null,
     price: 18,
   },
   {
@@ -66,7 +66,7 @@ const testMenu = [
     type: "Second",
     isVegan: false,
     isVegetarian: false,
-    img: "",
+    image: null,
     price: 30,
   },
   {
@@ -75,7 +75,7 @@ const testMenu = [
     type: "Second",
     isVegan: false,
     isVegetarian: false,
-    img: "",
+    image: null,
     price: 28,
   },
   {
@@ -84,7 +84,7 @@ const testMenu = [
     type: "Second",
     isVegan: false,
     isVegetarian: false,
-    img: "",
+    image: null,
     price: 25,
   },
   {
@@ -94,7 +94,7 @@ const testMenu = [
     type: "Second",
     isVegan: false,
     isVegetarian: false,
-    img: "",
+    image: null,
     price: 26,
   },
   {
@@ -103,7 +103,7 @@ const testMenu = [
     type: "Second",
     isVegan: false,
     isVegetarian: false,
-    img: "",
+    image: null,
     price: 24,
   },
   {
@@ -112,7 +112,7 @@ const testMenu = [
     type: "Second",
     isVegan: true,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: 22,
   },
   {
@@ -121,7 +121,7 @@ const testMenu = [
     type: "Side",
     isVegan: false,
     isVegetarian: false,
-    img: "",
+    image: null,
     price: "10 / 14", // could also be 14 depending on size
   },
   {
@@ -130,7 +130,7 @@ const testMenu = [
     type: "Side",
     isVegan: true,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: 10,
   },
   {
@@ -139,7 +139,7 @@ const testMenu = [
     type: "Chef Special",
     isVegan: false,
     isVegetarian: false,
-    img: "",
+    image: null,
     price: 30,
   },
   {
@@ -149,7 +149,7 @@ const testMenu = [
     type: "Chef Special",
     isVegan: false,
     isVegetarian: false,
-    img: "",
+    image: null,
     price: 24,
   },
   {
@@ -158,7 +158,7 @@ const testMenu = [
     type: "Chef Special",
     isVegan: false,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: "10/14",
   },
   {
@@ -167,7 +167,7 @@ const testMenu = [
     type: "Side",
     isVegan: false,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: 9,
   },
   {
@@ -176,7 +176,7 @@ const testMenu = [
     type: "Side",
     isVegan: true,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: 8,
   },
   {
@@ -185,7 +185,7 @@ const testMenu = [
     type: "Side",
     isVegan: false,
     isVegetarian: false,
-    img: "",
+    image: null,
     price: 8,
   },
   {
@@ -194,7 +194,7 @@ const testMenu = [
     type: "Addon",
     isVegan: false,
     isVegetarian: false,
-    img: "",
+    image: null,
     price: 4,
   },
   {
@@ -203,7 +203,7 @@ const testMenu = [
     type: "Addon",
     isVegan: true,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: 4,
   },
   {
@@ -212,7 +212,7 @@ const testMenu = [
     type: "Addon",
     isVegan: false,
     isVegetarian: false,
-    img: "",
+    image: null,
     price: 10,
   },
   {
@@ -221,7 +221,7 @@ const testMenu = [
     type: "Addon",
     isVegan: false,
     isVegetarian: false,
-    img: "",
+    image: null,
     price: 12,
   },
   {
@@ -230,37 +230,35 @@ const testMenu = [
     type: "Specialty Beverage",
     isVegan: true,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: 10,
   },
   {
     name: "Cherry Lime Rickey",
-    img: "cherry_lime_ricky",
+
     description: "amarena cherries, lime, soda",
     type: "Specialty Beverage",
     isVegan: true,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: 10,
   },
   {
     name: "Bellini",
-    img: "belimi",
     description: "peach puree, sparkling white grape juice",
     type: "Specialty Beverage",
     isVegan: true,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: 10,
   },
   {
     name: "Melon Mojito",
-    img: "melon_mojito",
     description: "honeydew, mint, agave, lime",
     type: "Specialty Beverage",
     isVegan: true,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: 10,
   },
   {
@@ -269,7 +267,7 @@ const testMenu = [
     type: "Specialty Beverage",
     isVegan: true,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: 16,
   },
   {
@@ -278,7 +276,7 @@ const testMenu = [
     type: "Dessert",
     isVegan: false,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: 12,
   },
   {
@@ -287,7 +285,7 @@ const testMenu = [
     type: "Dessert",
     isVegan: true,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: 12,
   },
   {
@@ -296,7 +294,7 @@ const testMenu = [
     type: "Dessert",
     isVegan: false,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: 12,
   },
   {
@@ -305,7 +303,7 @@ const testMenu = [
     type: "Dessert",
     isVegan: false,
     isVegetarian: true,
-    img: "",
+    image: null,
     price: 8,
   },
 ];

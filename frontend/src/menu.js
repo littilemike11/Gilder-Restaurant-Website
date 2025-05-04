@@ -191,7 +191,7 @@ const menu = [
   },
   {
     name: "Cherry Lime Rickey",
-    img: cherry_lime_ricky,
+    image: cherry_lime_ricky,
     description: "amarena cherries, lime, soda",
     type: "Specialty Beverage",
     isVegan: true,
@@ -200,7 +200,7 @@ const menu = [
   },
   {
     name: "Bellini",
-    img: belimi,
+    image: belimi,
     description: "peach puree, sparkling white grape juice",
     type: "Specialty Beverage",
     isVegan: true,
@@ -209,7 +209,7 @@ const menu = [
   },
   {
     name: "Melon Mojito",
-    img: melon_mojito,
+    image: melon_mojito,
     description: "honeydew, mint, agave, lime",
     type: "Specialty Beverage",
     isVegan: true,

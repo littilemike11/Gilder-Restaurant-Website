@@ -12,6 +12,8 @@ const storage = new CloudinaryStorage({
   params: {
     folder: "restaurant-menu",
     allowed_formats: ["jpeg", "png", "jpg", "webp"],
+    // Save the public_id as part of the image object
+    transformation: [{ width: 500, height: 500, crop: "limit" }],
   },
 });
 

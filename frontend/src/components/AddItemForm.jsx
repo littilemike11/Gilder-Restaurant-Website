@@ -25,33 +25,33 @@ export default function AddItemForm({ isAdmin, itemTypes, AddFoodItem, menu, set
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const item = {
-            name,
-            type: itemType,
-            description,
-            price,
-            isVegan: vegan,
-            isVegetarian: vegetarian,
-            isHidden: hidden,
-            image: imageFile
-        };
+        // most be FormData for images instead of regular js object
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("type", itemType);
+        formData.append("description", description);
+        formData.append("price", price);
+        formData.append("isVegan", vegan);
+        formData.append("isVegetarian", vegetarian);
+        formData.append("isHidden", hidden);
+        if (imageFile) {
+            formData.append("image", imageFile); // 🔥 this must match `.single("image")`
+            console.log(typeof imageFile)
+        }
 
         try {
             if (isAdmin) {
-                const response = await AddFoodItem(item);
-                console.log("Created Item", response.data)
-                setMenu([...menu, response.data.data])
-            }
-            else {
-                // placeholder until server setup
-                setMenu([...menu, item])
-                console.log("Created Item", item)
+                const response = await AddFoodItem(formData); // 👈 this sends FormData
+                console.log("Created Item", response.data);
+                setMenu([...menu, response.data.data]);
+            } else {
+                setMenu([...menu, formData]);
+                console.log("Created Item (mock)", formData);
             }
 
             document.getElementById('my_modal_4').close();
 
-            // Reset form (optional)
+            // Reset form
             setName("");
             setType("");
             setDescription("");
@@ -59,12 +59,13 @@ export default function AddItemForm({ isAdmin, itemTypes, AddFoodItem, menu, set
             setVegan(false);
             setVegetarian(false);
             setHidden(false);
+            setPreview(null);
+            setImageFile(null);
         } catch (error) {
-            console.error("Creation Failed", error)
+            console.error("Creation Failed", error);
         }
-
-
     };
+
 
     return (
         <>

@@ -35,8 +35,13 @@ router.post("/", upload.single("image"), async (req, res) => {
   try {
     const { name, description, type, isVegan, isVegetarian, price, isHidden } =
       req.body;
-    const imageUrl = req.file?.path; // Cloudinary gives you a hosted image URL
-
+    // Check for uploaded image
+    const imageData = req.file
+      ? {
+          path: req.file.path, // Cloudinary-hosted URL
+          public_id: req.file.filename || req.file.public_id, // Public ID for deletion
+        }
+      : null;
     //create and save new menu item
     const newItem = new MenuItem({
       name,
@@ -46,7 +51,7 @@ router.post("/", upload.single("image"), async (req, res) => {
       isVegetarian,
       price,
       isHidden,
-      image: imageUrl,
+      image: imageData,
     });
     await newItem.save();
     res.status(201).json({
@@ -60,10 +65,13 @@ router.post("/", upload.single("image"), async (req, res) => {
   }
 });
 // Update Menu item
-router.put("/:id", async (req, res) => {
+router.put("/:id", upload.single("image"), async (req, res) => {
   try {
     const id = req.params.id;
-    const {
+    const { name, description, type, isVegan, isVegetarian, price, isHidden } =
+      req.body;
+
+    const updatedFields = {
       name,
       description,
       type,
@@ -71,22 +79,32 @@ router.put("/:id", async (req, res) => {
       isVegetarian,
       price,
       isHidden,
-      image,
-    } = req.body;
-    const updatedItem = await MenuItem.findByIdAndUpdate(
-      id,
-      {
-        name,
-        description,
-        type,
-        isVegan,
-        isVegetarian,
-        price,
-        isHidden,
-        image,
-      },
-      { new: true }
-    );
+    };
+
+    // If a new image was uploaded
+    if (req.file) {
+      const item = await MenuItem.findById(id);
+
+      if (!item) {
+        return res.status(404).json({ message: "Item not found" });
+      }
+
+      // Delete the old image from Cloudinary (if it exists)
+      if (item.image?.public_id) {
+        await cloudinary.uploader.destroy(item.image.public_id);
+      }
+
+      // Set the new image (path + public_id)
+      updatedFields.image = {
+        path: req.file.path,
+        public_id: req.file.filename || req.file.public_id, // filename comes from CloudinaryStorage
+      };
+    }
+
+    const updatedItem = await MenuItem.findByIdAndUpdate(id, updatedFields, {
+      new: true,
+    });
+
     if (!updatedItem) {
       return res.status(404).json({ message: "item not found" });
     }
@@ -104,12 +122,16 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const foundItem = await MenuItem.findByIdAndDelete(id);
+    const foundItem = await MenuItem.findById(id);
 
     if (!foundItem) {
       return res.status(404).json({ message: "Item not found" });
     }
-
+    // Delete the image from Cloudinary using the public_id
+    if (foundItem.image?.public_id) {
+      await cloudinary.uploader.destroy(foundItem.image.public_id); // Delete from Cloudinary
+    }
+    await MenuItem.findByIdAndDelete(id);
     res.status(200).json({ message: "Food Item deleted successfully" });
   } catch (error) {
     console.error("Error deleting item: ", error);

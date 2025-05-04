@@ -9,32 +9,47 @@ export default function UpdateItemForm({ isAdmin, item, updateFoodItem, itemType
     const [hidden, setHidden] = useState(item.isHidden);
 
     const [isOpen, setIsOpen] = useState(false);
+    const [preview, setPreview] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
+
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setPreview(URL.createObjectURL(file));
+            console.log(file)
+            console.log(preview)
+            setImageFile(file); // Save actual file to state
+        }
+    };
 
     const openModal = () => setIsOpen(true);
     const closeModal = () => setIsOpen(false);
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const newItem = {
-            name,
-            type: itemType,
-            description,
-            price,
-            isVegan: vegan,
-            isVegetarian: vegetarian,
-            isHidden: hidden
-        };
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("type", itemType);
+        formData.append("description", description);
+        formData.append("price", price);
+        formData.append("isVegan", vegan);
+        formData.append("isVegetarian", vegetarian);
+        formData.append("isHidden", hidden);
+        if (imageFile) {
+            formData.append("image", imageFile); // 🔥 this must match `.single("image")`
+        }
 
         try {
             if (isAdmin) {
-                const response = await updateFoodItem(item._id, newItem);
+                const response = await updateFoodItem(item._id, formData);
                 console.log("Updated Item", response.data);
                 // Update local menu
                 setMenu(menu.map(m => m._id === item._id ? response.data.data : m));
             } else {
                 // placeholder until server setup
-                setMenu(menu.map(m => m.name === item.name ? newItem : m));
-                console.log("updated Item", item)
+                setMenu(menu.map(m => m.name === item.name ? formData : m));
+                console.log("updated Item", formData)
             }
 
             closeModal();
@@ -81,7 +96,18 @@ export default function UpdateItemForm({ isAdmin, item, updateFoodItem, itemType
                                         <option key={index} value={type}>{type}</option>
                                     ))}
                                 </select>
-
+                                <label className="label">Image</label>
+                                <input
+                                    type="file"
+                                    className="file-input"
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                />
+                                <div className="avatar mt-4 justify-center">
+                                    <div className="w-24 rounded overflow-hidden">
+                                        {preview && <img src={preview} alt="Preview" />}
+                                    </div>
+                                </div>
                                 <label className="label">Description</label>
                                 <textarea
                                     value={description}

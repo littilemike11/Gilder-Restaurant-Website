@@ -80,11 +80,11 @@ export default function Dashboard({ isAdmin = false }) {
                                     <input type="checkbox" className="checkbox" />
                                 </label> */}
 
-                                    {item.img &&
+                                    {item.image &&
                                         <div className="avatar">
                                             <div className="mask mask-squircle h-12 w-12">
                                                 <img
-                                                    src={item.img}
+                                                    src={item.image}
                                                     alt={`image of ${item.name}`} />
                                             </div>
                                         </div>}
