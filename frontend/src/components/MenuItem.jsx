@@ -14,11 +14,11 @@ export default function MenuItem({ item }) {
                     {!item.isVegan && item.isVegetarian && <div className="badge badge-outline">Vegetarian</div>}
                 </div>
             </div>
-            {item.img &&
+            {item.image &&
                 <figure className="h-80 overflow-hidden">
                     <img
-                        className=""
-                        src={item.img}
+
+                        src={item.image}
                         alt={`image of ${item.name}`} />
                 </figure>
             }

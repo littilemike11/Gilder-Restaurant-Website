@@ -73,8 +73,8 @@ export default function Dashboard({ isAdmin = false }) {
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        {filteredMenu.map((item, index) => (
-                            <tr key={index}>
+                        {filteredMenu.map((item) => (
+                            <tr key={isAdmin ? item._id : item.name}>
                                 <th>
                                     {/* <label>
                                     <input type="checkbox" className="checkbox" />
@@ -128,7 +128,19 @@ export default function Dashboard({ isAdmin = false }) {
                         <tr>
                             <th></th>
                             <th>Name</th>
-                            <th>Type</th>
+                            <th><select
+                                className="select w-32 rounded-box bg-base-100 shadow-sm"
+                                value={filterType}
+                                onChange={(e) => setFilterType(e.target.value)}>
+
+                                <option value={""}>All</option> {/* Reset filter */}
+
+                                {itemTypes.map((type, index) => (
+                                    <option key={index} value={type}>
+                                        {type}
+                                    </option>
+                                ))}
+                            </select></th>
                             <th>Description</th>
                             <th>Price</th>
                             <th>Vegan</th>

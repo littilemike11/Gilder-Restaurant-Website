@@ -9,7 +9,7 @@ export default function UpdateItemForm({ isAdmin, item, updateFoodItem, itemType
     const [hidden, setHidden] = useState(item.isHidden);
 
     const [isOpen, setIsOpen] = useState(false);
-    const [preview, setPreview] = useState(null);
+    const [preview, setPreview] = useState(item.image);
     const [imageFile, setImageFile] = useState(null);
 
 
