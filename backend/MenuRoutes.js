@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 import upload from "./uploadMiddleware.js"; // adjust path if needed
 import MenuItem from "./menuModel.js";
+import { cloudinary } from "./cloudinaryConfig.js";
 
 //Get all menu items (including hidden -> staff)
 router.get("/", async (req, res) => {
