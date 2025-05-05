@@ -87,9 +87,8 @@ router.put("/:id", upload.single("image"), async (req, res) => {
       // Delete the old image from Cloudinary (if it exists)
       if (item.image) {
         const url = item.image;
-        const publicId = "restaurant-menu/ffmnuadeqjp57pnbrdvq";
-        const response = await cloudinary.uploader.destroy(publicId);
-        console.log(response); // helps debug
+        const publicId = extractPublicIdFromUrl(url);
+        await cloudinary.uploader.destroy(publicId);
       }
 
       // Set the new image
@@ -125,8 +124,7 @@ router.delete("/:id", async (req, res) => {
     // Delete the old image from Cloudinary (if it exists)
     if (foundItem.image) {
       const url = foundItem.image;
-      const publicId = "restaurant-menu/ffmnuadeqjp57pnbrdvq";
-      console.log(publicId);
+      const publicId = extractPublicIdFromUrl(url);
       await cloudinary.uploader.destroy(publicId);
     }
     await MenuItem.findByIdAndDelete(id);
@@ -136,5 +134,11 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+function extractPublicIdFromUrl(url) {
+  const filename = url.split("/").pop(); // e.g., ffmnuadeqjp57pnbrdvq.jpg
+  const publicId = `restaurant-menu/${filename.split(".")[0]}`; // remove extension
+  return publicId;
+}
 
 export default router;
