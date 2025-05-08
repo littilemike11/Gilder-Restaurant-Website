@@ -17,8 +17,6 @@ export default function AddItemForm({ isAdmin, itemTypes, AddFoodItem, menu, set
         const file = e.target.files[0];
         if (file) {
             setPreview(URL.createObjectURL(file));
-            console.log(file)
-            console.log(preview)
             setImageFile(file); // Save actual file to state
         }
     };
@@ -26,27 +24,38 @@ export default function AddItemForm({ isAdmin, itemTypes, AddFoodItem, menu, set
     const handleSubmit = async (e) => {
         e.preventDefault();
         // most be FormData for images instead of regular js object
+        const item = {}
         const formData = new FormData();
-        formData.append("name", name);
-        formData.append("type", itemType);
-        formData.append("description", description);
-        formData.append("price", price);
-        formData.append("isVegan", vegan);
-        formData.append("isVegetarian", vegetarian);
-        formData.append("isHidden", hidden);
-        if (imageFile) {
-            formData.append("image", imageFile); // 🔥 this must match `.single("image")`
-            console.log(typeof imageFile)
+        if (isAdmin) {
+            formData.append("name", name);
+            formData.append("type", itemType);
+            formData.append("description", description);
+            formData.append("price", price);
+            formData.append("isVegan", vegan);
+            formData.append("isVegetarian", vegetarian);
+            formData.append("isHidden", hidden);
+            if (imageFile) {
+                formData.append("image", imageFile); // 🔥 this must match `.single("image")`
+            }
+        } else {
+
+            item.name = name
+            item.type = itemType
+            item.description = description
+            item.price = price
+            item.isVegan = vegan
+            item.isVegetarian = vegetarian
+            if (imageFile) {
+                item.image = preview // Directly use preview for non-admin
+            }
         }
 
         try {
             if (isAdmin) {
                 const response = await AddFoodItem(formData); // 👈 this sends FormData
-                console.log("Created Item", response.data);
                 setMenu([...menu, response.data.data]);
             } else {
-                setMenu([...menu, formData]);
-                console.log("Created Item (mock)", formData);
+                setMenu([...menu, item]);
             }
 
             document.getElementById('my_modal_4').close();

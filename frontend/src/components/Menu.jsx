@@ -8,7 +8,6 @@ export default function Menu() {
     useEffect(() => {
         const fetchMenu = async () => {
             const data = await getActiveMenu();
-            console.log(data.data)
             setMenu(data.data);
         };
 

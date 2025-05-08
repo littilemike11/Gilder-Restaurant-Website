@@ -17,8 +17,6 @@ export default function UpdateItemForm({ isAdmin, item, updateFoodItem, itemType
         const file = e.target.files[0];
         if (file) {
             setPreview(URL.createObjectURL(file));
-            console.log(file)
-            console.log(preview)
             setImageFile(file); // Save actual file to state
         }
     };
@@ -28,28 +26,40 @@ export default function UpdateItemForm({ isAdmin, item, updateFoodItem, itemType
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const newItem = {}
         const formData = new FormData();
-        formData.append("name", name);
-        formData.append("type", itemType);
-        formData.append("description", description);
-        formData.append("price", price);
-        formData.append("isVegan", vegan);
-        formData.append("isVegetarian", vegetarian);
-        formData.append("isHidden", hidden);
-        if (imageFile) {
-            formData.append("image", imageFile); // 🔥 this must match `.single("image")`
+        if (isAdmin) {
+            formData.append("name", name);
+            formData.append("type", itemType);
+            formData.append("description", description);
+            formData.append("price", price);
+            formData.append("isVegan", vegan);
+            formData.append("isVegetarian", vegetarian);
+            formData.append("isHidden", hidden);
+            if (imageFile) {
+                formData.append("image", imageFile); // 🔥 this must match `.single("image")`
+            }
+        } else {
+
+            newItem.name = name
+            newItem.type = itemType
+            newItem.description = description
+            newItem.price = price
+            newItem.isVegan = vegan
+            newItem.isVegetarian = vegetarian
+            if (imageFile) {
+                newItem.image = preview // Directly use preview for non-admin
+            }
         }
 
         try {
             if (isAdmin) {
                 const response = await updateFoodItem(item._id, formData);
-                console.log("Updated Item", response.data);
                 // Update local menu
                 setMenu(menu.map(m => m._id === item._id ? response.data.data : m));
             } else {
                 // placeholder until server setup
-                setMenu(menu.map(m => m.name === item.name ? formData : m));
-                console.log("updated Item", formData)
+                setMenu(menu.map(m => m.name === item.name ? newItem : m));
             }
 
             closeModal();

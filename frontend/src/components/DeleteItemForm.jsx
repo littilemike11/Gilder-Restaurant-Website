@@ -12,11 +12,9 @@ export default function DeleteItemForm({ isAdmin, id, name, deleteFoodItem, menu
             if (isAdmin) {
                 setMenu(menu.filter(item => item._id !== id)); // remove item locally
                 const response = await deleteFoodItem(id);
-                console.log(response.data)
             } else {
                 // placeholder until server setup
                 setMenu(menu.filter(item => item.name !== name))
-                console.log("deleted Item", name)
             }
 
             closeModal(); // Close the modal after deleting
